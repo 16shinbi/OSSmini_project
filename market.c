@@ -17,7 +17,7 @@ int selectMenu(){
 
 int main(void){
 
-    Product *sp[100];
+//    Product *sp[100];
     int menu;
     int count = 0;
     int curcount;
