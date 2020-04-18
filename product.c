@@ -56,7 +56,7 @@ int deleteProduct(Product *s){
     return 1;
 }
 
-void savaData(Score *s[], int count){
+void savaData(Product *s[], int count){
 	FILE *fp;
 	fp = fopen("MarketList.txt", "wr");
 	for(int i=0 ; i<count ; i++){
