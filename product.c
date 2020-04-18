@@ -55,3 +55,13 @@ int deleteProduct(Product *s){
     s->score =-1;
     return 1;
 }
+
+void savaData(Score *s[], int count){
+	FILE *fp;
+	fp = fopen("MarketList.txt", "wr");
+	for(int i=0 ; i<count ; i++){
+		if(s[i]->weight = -1)
+			fprintf(fp, "%d %s %d %d %d %d", i+1, s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);
+	}
+	printf("저장됨!\n");
+}
