@@ -43,7 +43,7 @@ void listProduct(Product *s[],int count){
     printf("================================================================\n");
     for(int i=0 ; i<count ; i++){
 	if(s[i]->weight == -1 && s[i]->price == -1 && s[i]->s_price == -1 && s[i]->score == -1) return;
-		printf("%15s %10d %10d %10d %10d \n", s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);
+		printf("%d %15s %10d %10d %10d %10d \n", i+1, s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);
     }
     printf("\n");
 }
