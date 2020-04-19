@@ -21,7 +21,7 @@ int main(void){
     int menu;
     int count = 0;
     int curcount;
-
+    
     curcount = count;
 
     while(1){
@@ -64,7 +64,14 @@ int main(void){
 	}
 	else if(menu==5){
 	  if(count==0) printf("데이터가 없습니다\n");
-	  else saveData(sp, curcount);
+	  else {
+		sp[curcount] = (Product *)malloc(sizeof(Product));
+		saveData(sp, curcount);
+		}
+	}
+	else if(menu==6){
+	  loadData(sp);
+	  free(sp[curcount]);
 	}
 }
     printf("=>종료됨\n");
