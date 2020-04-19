@@ -12,6 +12,7 @@ int selectMenu(){
     printf("6.저장불러오기\n");
     printf("7.상품명검색\n");
     printf("8.별점검색\n");
+    printf("9.가격검색\n");
     printf("0.종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
@@ -25,6 +26,7 @@ int main(void){
     int count = 0;
     int curcount;
     
+//    loadData(sp);
     curcount = count;
 
     while(1){
@@ -42,7 +44,7 @@ int main(void){
         }
 
         else if(menu==3){
-            int no = selectDataNo();
+            int no = selectDataNo(sp, curcount);
 	    if(no == 0){
             	printf("취소됨\n\n");
                 continue;
@@ -51,7 +53,7 @@ int main(void){
         }
 
         else if(menu==4){
-	  int no = selectDataNo();
+	  int no = selectDataNo(sp, curcount);
 	  if(no == 0){
 		printf("취소됨\n\n");
 		continue;
@@ -68,16 +70,17 @@ int main(void){
 	else if(menu==5){
 	  if(count==0) printf("데이터가 없습니다\n");
 	  else {
-		sp[curcount] = (Product *)malloc(sizeof(Product));
+		p[curcount] = (Product *)malloc(sizeof(Product));
 		saveData(sp, curcount);
 		}
 	}
 	else if(menu==6){
 	  loadData(sp);
-	  free(sp[curcount]);
+	  free(p[curcount]);
 	}
 	else if(menu==7) searchName(sp, count);
 	else if(menu==8) searchscore(sp, count);
+	else if(menu==9) searchPrice(sp, count);
 }
     printf("=>종료됨\n");
 #endif
