@@ -1,7 +1,7 @@
 #include "manager.h"
 #include "product.h"
 
-int selectDataNo(Product *s[], int count){
+int selectDataNo(){
 	int no;
 	printf("번호는?(취소:0)");
 	scanf("%d", &no);
@@ -83,28 +83,32 @@ void searchPrice(Product *s[], int count){
 
 void saveData(Product *s[], int count){
         FILE *fp;
+	s[count] = (Product *)malloc(sizeof(Product));
         fp = fopen("Menu.txt", "wt");
         for(int i=0 ; i<count ; i++){
                 fprintf(fp, "%s %d %d %d %d\n",s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);
-        }
+	 }
         printf("저장됨\n\n");
+	free(s[count]);
 }
 
 int loadData(Product *s[]){
         int count = 0;
         FILE *fp;
-        fp = fopen("Menu.txt", "rt");
+        s[count] = (Product *)malloc(sizeof(Product));
+	fp = fopen("Menu.txt", "rt");
         if(fp ==NULL){
                 printf("파일없음\n");
                 return 0;
         }
         for(;;count++){
-                fscanf(fp, "%s %d %d %d %d\n",s[count]->name, &s[count]->weight, &s[count]->price, &s[count]->s_price, &s[count]->score);
+               p[count] = (Product *)malloc(sizeof(Product)); 
+               fscanf(fp, "%s %d %d %d %d\n",s[count]->name, &s[count]->weight, &s[count]->price, &s[count]->s_price, &s[count]->score);
                 if(feof(fp)) break;
         }
         fclose(fp);
         printf("=>로딩성공\n\n");
-        free(p[curcount]);
+//        free(p[curcount]);
 	return count;
 }
 
