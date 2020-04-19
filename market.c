@@ -11,6 +11,7 @@ int selectMenu(){
     printf("5.저장\n");
     printf("6.저장불러오기\n");
     printf("7.상품명검색\n");
+    printf("8.별점검색\n");
     printf("0.종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
@@ -76,6 +77,7 @@ int main(void){
 	  free(sp[curcount]);
 	}
 	else if(menu==7) searchName(sp, count);
+	else if(menu==8) searchscore(sp, count);
 }
     printf("=>종료됨\n");
 #endif
