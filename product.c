@@ -40,15 +40,14 @@ int updateProduct(Product *s){
 } 
  
 void listProduct(Product *s[],int count){     
-	printf("=========================================================== =====\n");     
+	printf("No  상품명   중량   가격  표준가격  별점\n");
+	printf("=======================================\n");     
 	for(int i=0 ; i<count ; i++){
 		if(s[i] != NULL){
-	printf("%d %15s %10d %10d %10d %10d \n",i+1,  s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);     
-	printf("=========================================================== =====\n");     
+	printf("%2d %10s %5d %5d %5d %5d \n", i+1,  s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);          
 		}	
 	}
 	printf("\n"); 
-
 } 
  
 int deleteProduct(Product *s){     
@@ -57,30 +56,4 @@ int deleteProduct(Product *s){
 	s->s_price =-1;     
 	s->score =-1;     
 	return 1; 
-}
-
-void saveData(Product *s[], int count){
-	FILE *fp;
-	fp = fopen("Menu.txt", "wt");
-	for(int i=0 ; i<count ; i++){
-		fprintf(fp, "%s %d %d %d %d",s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);
-	}
-	printf("저장됨\n");
-}
-
-int loadData(Product *s[]){
-	int count = 0;
-	FILE *fp;
-	fp = fopen("Menu.txt", "rt");
-	if(fp ==NULL){
-		printf("파일없음\n");
-		return 0;
-	}
-	for(;;count++){
-		fscanf(fp, "%s %d %d %d %d",s[count]->name, &s[count]->weight, &s[count]->price, &s[count]->s_price, &s[count]->score); 
-		if(feof(fp)) break;
-	}
-	fclose(fp);
-	printf("=>로딩성공\n");
-	return count;
 }
