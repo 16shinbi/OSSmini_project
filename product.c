@@ -63,7 +63,24 @@ void saveData(Product *s[], int count){
 	FILE *fp;
 	fp = fopen("Menu.txt", "wt");
 	for(int i=0 ; i<count ; i++){
-		fprintf(fp, "%d %s %d %d %d %d",i+1,s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);
+		fprintf(fp, "%s %d %d %d %d",s[i]->name, s[i]->weight, s[i]->price, s[i]->s_price, s[i]->score);
 	}
 	printf("저장됨\n");
-} 
+}
+
+int loadData(Product *s[]){
+	int count = 0;
+	FILE *fp;
+	fp = fopen("Menu.txt", "rt");
+	if(fp ==NULL){
+		printf("파일없음\n");
+		return 0;
+	}
+	for(;;count++){
+		fscanf(fp, "%s %d %d %d %d",s[count]->name, &s[count]->weight, &s[count]->price, &s[count]->s_price, &s[count]->score); 
+		if(feof(fp)) break;
+	}
+	fclose(fp);
+	printf("=>로딩성공\n");
+	return count;
+}
